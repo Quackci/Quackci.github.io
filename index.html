@@ -1,3 +1,4 @@
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +50,11 @@ h2{font-size:clamp(26px,5vw,38px);margin-bottom:16px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
 ul.m{padding-left:20px;margin:0}ul.m li{margin:8px 0}
 .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.teachers{display:grid;grid-template-columns:repeat(2,minmax(200px,260px));justify-content:center;gap:16px;margin-top:16px}
+.teachers .card{text-align:center;transition:transform .2s,border-color .2s}
+.teachers .card:hover{transform:translateY(-4px);border-color:var(--blue)}
+.teacher-label{text-align:center;color:var(--mute);margin:24px 0 0;font-size:14px;text-transform:uppercase;letter-spacing:.12em}
+@media(max-width:560px){.teachers{grid-template-columns:minmax(0,1fr)}}
 
 /* TEAM CARDS + LOCKED PHOTOS */
 
@@ -123,17 +129,26 @@ a{color:var(--blue)}
 <h2>Team Air-osmith</h2>
 <div class="team">
 <div class="card"><div class="av has-img"><img src="images/cassie.jpg" alt="Photo of Cassie Banda" loading="lazy"></div><h3>Cassie Banda</h3><div class="role">Team lead</div></div>
-<div class="card"><div class="av has-img"><img src="images/amy.jpg" alt="Photo of Amy Chaires" loading="lazy"></div><h3>Amy Chaires</h3><div class="role">Lead designer</div></div>
-<div class="card"><div class="av has-img"><img src="images/kailey.jpg" alt="Photo of Kailey Pinon" loading="lazy"></div><h3>Kailey Pinon</h3><div class="role">Lead marketing</div></div>
-<div class="card"><div class="av has-img"><img src="images/servando.jpg" alt="Photo of Servando Ovalle" loading="lazy"></div><h3>Servando Ovalle</h3><div class="role">Assistant marketing</div></div>
+<div class="card"><div class="av has-img"><img src="images/amy.jpg" alt="Photo of Amy Chaires" loading="lazy"></div><h3>Amy Chaires</h3><div class="role">Lead builder</div></div>
+<div class="card"><div class="av has-img"><img src="images/kailey.jpg" alt="Photo of Kailey Pinon" loading="lazy"></div><h3>Kailey Pinon</h3><div class="role">Lead notebook</div></div>
+<div class="card"><div class="av has-img"><img src="images/servando.jpg" alt="Photo of Servando Ovalle" loading="lazy"></div><h3>Servando Ovalle</h3><div class="role">Lead coder</div></div>
 </div>
-<div class="card" style="margin-top:16px"><h3>Meet the team</h3><p style="margin:10px 0 0">We're a group of young engineers at Harlingen Collegiate High, working to solve a problem for future astronauts. Our tool cuts aluminum on Mars using only compressed air, and every part is built to be swapped out and used with thick gloves. We design it, test it, and keep improving it.</p><p class="sub" style="margin:14px 0 0;font-size:15px">Teachers: Mercedes Espinoza, Mr. Oviedo &middot; NASA HUNCH project: Pneumatic Tools</p></div>
+<div class="card" style="margin-top:16px"><h3>Meet the team</h3><p style="margin:10px 0 0">We're a group of young engineers at Harlingen Collegiate High, working to solve a problem for future astronauts. Our tool cuts aluminum on Mars using only compressed air, and every part is built to be swapped out and used with thick gloves. We design it, test it, and keep improving it.</p><p class="sub" style="margin:14px 0 0;font-size:15px">NASA HUNCH project: Pneumatic Tools</p></div>
+<h3 class="teacher-label">Our pathway teachers</h3>
+<div class="teachers">
+<div class="card"><h3>Mercedes Espinoza</h3><div class="role">Engineering Pathway Teacher</div></div>
+<div class="card"><h3>Jose Oviedo</h3><div class="role">Computer Science Pathway Teacher</div></div>
+</div>
 </section>
 
 <section id="cad">
 <h2>CAD drawings</h2>
-<div class="slots"><div class="slot">Photo coming soon<br>CAD, full tool</div><div class="slot">Photo coming soon<br>CAD, actuator</div><div class="slot">Photo coming soon<br>CAD, saw frame</div></div>
-<div class="card" style="margin-top:16px"><h3>What we designed</h3><ul class="m"><li>Full tool: add description here</li><li>Actuator: add description here</li><li>Saw frame: add description here</li></ul></div>
+<p class="sub">Our CAD designs include two end caps made for the tubing. The images and descriptions can be updated as the designs are finalized.</p>
+<div class="slots">
+<figure class="slot has-img"><img src="images/endcap-1.png" alt="CAD rendering of End Cap 1 for the tubing" loading="lazy"><figcaption>End Cap 1</figcaption></figure>
+<figure class="slot"><div>Second end cap image<br>coming soon</div></figure>
+</div>
+<div class="card" style="margin-top:16px"><h3>End cap designs</h3><ul class="m"><li><strong>End Cap 1:</strong> A 3D-designed end cap for the tubing. This is the first design image currently available.</li><li><strong>End Cap 2:</strong> The second end cap design. Image and description will be added when available.</li></ul></div>
 </section>
 
 <section id="proto">
@@ -250,3 +265,4 @@ tabs.forEach(function(b){b.onclick=function(){tabs.forEach(function(o){o.setAttr
 </script>
 </body>
 </html>
+```
