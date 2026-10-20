@@ -127,12 +127,13 @@ a{color:var(--blue)}
 <div class="card"><div class="av has-img"><img src="images/kailey.jpg" alt="Photo of Kailey Pinon" loading="lazy"></div><h3>Kailey Pinon</h3><div class="role">Lead marketing</div></div>
 <div class="card"><div class="av has-img"><img src="images/servando.jpg" alt="Photo of Servando Ovalle" loading="lazy"></div><h3>Servando Ovalle</h3><div class="role">Assistant marketing</div></div>
 </div>
-<div class="card" style="margin-top:16px"><ul class="m"><li>School: Harlingen Collegiate High</li><li>Teachers: Mercedes Espinoza, Mr. Oviedo</li><li>NASA HUNCH project: Pneumatic Tools</li></ul></div>
+<div class="card" style="margin-top:16px"><h3>Meet the team</h3><p style="margin:10px 0 0">We're a group of young engineers at Harlingen Collegiate High, working to solve a problem for future astronauts. Our tool cuts aluminum on Mars using only compressed air, and every part is built to be swapped out and used with thick gloves. We design it, test it, and keep improving it.</p><p class="sub" style="margin:14px 0 0;font-size:15px">Teachers: Mercedes Espinoza, Mr. Oviedo &middot; NASA HUNCH project: Pneumatic Tools</p></div>
 </section>
 
 <section id="cad">
 <h2>CAD drawings</h2>
 <div class="slots"><div class="slot">Photo coming soon<br>CAD, full tool</div><div class="slot">Photo coming soon<br>CAD, actuator</div><div class="slot">Photo coming soon<br>CAD, saw frame</div></div>
+<div class="card" style="margin-top:16px"><h3>What we designed</h3><ul class="m"><li>Full tool: add description here</li><li>Actuator: add description here</li><li>Saw frame: add description here</li></ul></div>
 </section>
 
 <section id="proto">
@@ -175,36 +176,36 @@ a{color:var(--blue)}
 <a class="card vid" href="https://www.youtube.com/watch?v=NwrLrIPK99A" target="_blank" rel="noopener" aria-label="Watch Actuator + saw frame on YouTube"><div class="thumb"><img src="https://img.youtube.com/vi/NwrLrIPK99A/hqdefault.jpg" alt="YouTube thumbnail: actuator and saw frame" loading="lazy"><div class="play">&#9654;</div></div><h3>Actuator + saw frame</h3><ul class="m"><li>Frame moves back and forth</li><li>Actuator forces saw through aluminum</li></ul></a>
 <a class="card vid" href="https://www.youtube.com/watch?v=CQ-_9Unah88" target="_blank" rel="noopener" aria-label="Watch 3D printed actuator on YouTube"><div class="thumb"><img src="https://img.youtube.com/vi/CQ-_9Unah88/hqdefault.jpg" alt="YouTube thumbnail: 3D printed actuator" loading="lazy"><div class="play">&#9654;</div></div><h3>3D printed actuator</h3><ul class="m"><li>Showed our designer how the tool could work</li></ul></a>
 </div>
-<div class="slots"><div class="slot">Photo coming soon<br>commercial product photo</div><div class="slot">Photo coming soon<br>commercial product photo</div></div>
 </section>
 
 <footer>Team Air-osmith &middot; Harlingen Collegiate High &middot; NASA HUNCH<br> Have a Spacetastic Day </footer>
 
 <script>
 // starfield
-(function(){var c=document.getElementById('sky'),x=c.getContext('2d'),s=[],W,H,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function(){var c=document.getElementById('sky'),x=c.getContext('2d'),s=[],W,H,rm=false;
 function init(){W=c.width=innerWidth;H=c.height=innerHeight;s=[];for(var i=0;i<140;i++)s.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.2,v:Math.random()*.15+.03,o:Math.random()*.6+.3})}
 function draw(){x.clearRect(0,0,W,H);s.forEach(function(p){x.globalAlpha=p.o;x.fillStyle='#fff';x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill();if(!rm){p.y+=p.v;if(p.y>H)p.y=0}});if(!rm)requestAnimationFrame(draw)}
 addEventListener('resize',function(){init();draw()});init();draw()})();
 
 
 // shooting stars: little white dot with a tail that fades, every ~5 seconds, flying top right to bottom left
+// (runs on requestAnimationFrame and ignores the "reduce motion" setting on purpose)
 (function(){
 function launch(){
-var W=innerWidth,H=innerHeight,a=(32+Math.random()*26)*Math.PI/180,   // flight angle below horizontal
+var W=innerWidth,H=innerHeight,a=(32+Math.random()*26)*Math.PI/180,
 dist=Math.max(W,H)*(.55+Math.random()*.35),len=110+Math.random()*80,
-dx=-Math.cos(a)*dist,dy=Math.sin(a)*dist,rot=180-a*180/Math.PI;
+dx=-Math.cos(a)*dist,dy=Math.sin(a)*dist,rot=180-a*180/Math.PI,dur=1500+Math.random()*700;
 var m=document.createElement('div');m.className='meteor';
 m.style.width=len+'px';
 m.style.left=(W*(.45+Math.random()*.6))+'px';m.style.top=(-10+Math.random()*H*.25)+'px';
 m.innerHTML='<i></i>';document.body.appendChild(m);
-var an=m.animate([
-{transform:'translate(0,0) rotate('+rot+'deg)',opacity:0},
-{opacity:1,offset:.12},
-{opacity:1,offset:.7},
-{transform:'translate('+dx+'px,'+dy+'px) rotate('+rot+'deg)',opacity:0}
-],{duration:1500+Math.random()*700,easing:'linear'});
-an.onfinish=function(){m.remove()};
+var t0=performance.now();
+(function step(now){
+var p=(now-t0)/dur;
+if(p>=1){m.remove();return}
+m.style.opacity=p<.12?p/.12:(p>.7?(1-p)/.3:1);
+m.style.transform='translate('+dx*p+'px,'+dy*p+'px) rotate('+rot+'deg)';
+requestAnimationFrame(step)})(t0)
 }
 function loop(){launch();setTimeout(loop,4000+Math.random()*2500)} // about every 5s
 setTimeout(loop,1200);
@@ -213,7 +214,7 @@ setTimeout(loop,1200);
 // deep space: galaxies only (own canvas, behind the stars)
 (function(){
 var c=document.getElementById('space'),x=c.getContext('2d'),W,H,U,gal=[],
-rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+rm=false;
 
 function galaxy(r,glow,dust,arms){ // drawn once to an offscreen canvas
 var s=Math.ceil(r*2),o=document.createElement('canvas'),g;o.width=o.height=s;g=o.getContext('2d');
