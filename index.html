@@ -23,7 +23,8 @@ h1,h2,h3,.hd{font-family:'Chakra Petch',system-ui,sans-serif;margin:0}
 /* THE NIGHT SKY */
 
 canvas#sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
-canvas#shoot{position:fixed;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+.meteor{position:fixed;z-index:4;height:2px;pointer-events:none;transform-origin:100% 50%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.9));border-radius:2px;opacity:0}
+.meteor i{position:absolute;right:-2px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px rgba(255,255,255,.8)}
 canvas#space{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px 16px;background:rgba(5,9,23,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 
@@ -96,7 +97,6 @@ a{color:var(--blue)}
 <body>
 <canvas id="space" aria-hidden="true"></canvas>
 <canvas id="sky" aria-hidden="true"></canvas>
-<canvas id="shoot" aria-hidden="true"></canvas>
 <nav aria-label="Sections">
 <a class="logo" href="#top" aria-label="Air-osmith home"><img alt="Air-osmith logo" src="images/logo.png"></a>
 <a href="#top">Home</a><a href="#mission">Problem</a><a href="#team">Team</a><a href="#cad">CAD</a><a href="#proto">Prototype</a><a href="#progress">Progress</a><a href="#results">Testing</a><a href="#inspo">Creations</a>
@@ -188,36 +188,26 @@ function draw(){x.clearRect(0,0,W,H);s.forEach(function(p){x.globalAlpha=p.o;x.f
 addEventListener('resize',function(){init();draw()});init();draw()})();
 
 
-// shooting stars: separate canvas, straight diagonal from top right to bottom left
+// shooting stars: little white dot with a tail that fades, every ~5 seconds, flying top right to bottom left
 (function(){
-if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-var c=document.getElementById('shoot'),x=c.getContext('2d'),W,H,list=[],nxt=performance.now()+800;
-function size(){W=c.width=innerWidth;H=c.height=innerHeight}
-function gap(){return 3000+Math.random()*3500} // 3-6.5s between stars
-function spawn(){
-var a=Math.PI*(.18+Math.random()*.14), // angle below horizontal, about 32-58 degrees
-sp=7+Math.random()*3;
-list.push({x:W*(.4+Math.random()*.7),y:-10+Math.random()*H*.2,vx:-Math.cos(a)*sp,vy:Math.sin(a)*sp,trail:[],alive:true})}
-function draw(t){
-x.clearRect(0,0,W,H);
-if(t>=nxt){spawn();nxt=t+gap()}
-list=list.filter(function(m){
-if(m.alive){
-m.x+=m.vx;m.y+=m.vy;
-m.trail.push({x:m.x,y:m.y,a:1});
-if(m.x<-30||m.y>H+30)m.alive=false}
-var tr=m.trail;
-tr.forEach(function(p){p.a-=.03}); // trail fades as the star keeps moving
-while(tr.length&&tr[0].a<=0)tr.shift();
-x.lineCap='round';x.strokeStyle='#fff';
-for(var i=1;i<tr.length;i++){
-x.globalAlpha=tr[i].a;x.lineWidth=.6+tr[i].a*1.8;
-x.beginPath();x.moveTo(tr[i-1].x,tr[i-1].y);x.lineTo(tr[i].x,tr[i].y);x.stroke()}
-if(m.alive){x.globalAlpha=1;x.fillStyle='#fff';x.beginPath();x.arc(m.x,m.y,2,0,7);x.fill()}
-return m.alive||tr.length});
-requestAnimationFrame(draw)}
-addEventListener('resize',size);
-size();requestAnimationFrame(draw)
+function launch(){
+var W=innerWidth,H=innerHeight,a=(32+Math.random()*26)*Math.PI/180,   // flight angle below horizontal
+dist=Math.max(W,H)*(.55+Math.random()*.35),len=110+Math.random()*80,
+dx=-Math.cos(a)*dist,dy=Math.sin(a)*dist,rot=180-a*180/Math.PI;
+var m=document.createElement('div');m.className='meteor';
+m.style.width=len+'px';
+m.style.left=(W*(.45+Math.random()*.6))+'px';m.style.top=(-10+Math.random()*H*.25)+'px';
+m.innerHTML='<i></i>';document.body.appendChild(m);
+var an=m.animate([
+{transform:'translate(0,0) rotate('+rot+'deg)',opacity:0},
+{opacity:1,offset:.12},
+{opacity:1,offset:.7},
+{transform:'translate('+dx+'px,'+dy+'px) rotate('+rot+'deg)',opacity:0}
+],{duration:1500+Math.random()*700,easing:'linear'});
+an.onfinish=function(){m.remove()};
+}
+function loop(){launch();setTimeout(loop,4000+Math.random()*2500)} // about every 5s
+setTimeout(loop,1200);
 })();
 
 // deep space: galaxies only (own canvas, behind the stars)
