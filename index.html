@@ -1,4 +1,3 @@
-```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,6 +68,23 @@ ul.m{padding-left:20px;margin:0}ul.m li{margin:8px 0}
 .tabs button{background:transparent;color:var(--mute);border:1px solid var(--line)}
 .tabs button[aria-selected=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
 .panel[hidden]{display:none}
+.progress-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.progress-card{min-width:0}
+.progress-card h3{font-size:21px;margin-bottom:10px;color:var(--text)}
+.progress-card p{margin:0 0 12px}
+.progress-card p:last-child{margin-bottom:0}
+.progress-card .eyebrow{color:var(--mars);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.progress-card.workshop{grid-column:1/-1}
+.progress-card .specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.version-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.version-card h3{font-size:20px;margin-bottom:10px}
+.version-image{position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#070c1c;margin-bottom:12px}
+.version-image img{width:100%;height:100%;object-fit:contain;display:block}
+.version-placeholder{aspect-ratio:4/3;display:grid;place-items:center;text-align:center;color:var(--mute);border:2px dashed var(--line);border-radius:10px;background:#070c1c;margin-bottom:12px;padding:12px}
+@media(max-width:650px){.progress-grid{grid-template-columns:1fr}.progress-card.workshop{grid-column:auto}.progress-card .specs{grid-template-columns:1fr}.version-grid{grid-template-columns:1fr}}
+.spec{padding:12px;border:1px solid var(--line);border-radius:10px;background:#070c1c}
+.spec strong{display:block;color:var(--blue);font-size:14px;margin-bottom:3px}
+@media(max-width:650px){.progress-grid{grid-template-columns:1fr}.progress-card.workshop{grid-column:auto}.progress-card .specs{grid-template-columns:1fr}}
 
 /* PHOTO SLOTS (locked, no click-to-change) */
 
@@ -185,15 +201,67 @@ a{color:var(--blue)}
 
 <section id="progress">
 <h2>Prototype progress</h2>
-<div class="tabs" role="tablist">
-<button role="tab" aria-selected="true" data-p="p0">Prototype 1</button>
-<button role="tab" aria-selected="false" data-p="p1">Prototype 2</button>
-<button role="tab" aria-selected="false" data-p="p2">Prototype 3</button>
+<p class="sub">Our current focus is proving the actuator can extend and retract with compressed air, then building toward a complete pneumatic hacksaw.</p>
+<div class="progress-grid" style="margin-top:20px">
+  <article class="card progress-card">
+    <div class="eyebrow">What we built</div>
+    <h3>Pneumatic actuator prototype</h3>
+    <p>Team Air-osmith has built a pneumatic actuator as the base component for an eventual pneumatic hacksaw. We designed the prototype around a working pressure target of up to 135 psi because we were concerned about how well it would hold up after repeated use.</p>
+    <p>The cylinder barrel uses braided PVC pipe because it resists physical wear, is transparent, and is easy to find. We modeled the end caps in 3D and printed them using Bambu PLA Tough+ filament to help limit air leakage. Printed components were made with six layers to reduce porous gaps where air could escape. O-rings, epoxy, and other sealing materials were also used to help close gaps between parts.</p>
+    <div class="specs">
+      <div class="spec"><strong>Pressure target</strong>Up to 135 psi</div>
+      <div class="spec"><strong>Cylinder barrel</strong>Braided PVC pipe</div>
+      <div class="spec"><strong>Printed material</strong>Bambu PLA Tough+</div>
+      <div class="spec"><strong>Prototype status</strong>Actuator base component</div>
+    </div>
+  </article>
+  <article class="card progress-card">
+    <div class="eyebrow">What it does</div>
+    <h3>How the actuator works</h3>
+    <p>The actuator needs to extend and retract so it can move a future hacksaw blade back and forth through an aluminum angle. We chose a 5/2-way, single-solenoid valve to control the double-acting cylinder. A double-acting actuator uses compressed air to drive both directions, so the valve switches the air supply and exhaust between the two strokes.</p>
+    <p>We selected 8 mm PCU tubing for its stated pressure rating of about 150 psi, low weight, flexibility, and durability. Elbow fittings connect the tubing to the end caps and help route air from the compressor into the system.</p>
+    <h3 style="margin-top:18px">Main components</h3>
+    <ul class="m">
+      <li>Braided PVC cylinder barrel</li>
+      <li>Three modeled end caps and a blocker</li>
+      <li>Wooden actuator rod and supports</li>
+      <li>8 mm PCU tubing and elbow fittings</li>
+      <li>5/2-way single-solenoid valve</li>
+      <li>Medium-sized air compressor</li>
+    </ul>
+    <p class="sub" style="font-size:13px;margin-top:14px">Component list reflects the team's reported prototype status as of October 23, 2026.</p>
+  </article>
+  <article class="card progress-card workshop">
+    <div class="eyebrow">What we need to continue working on</div>
+    <h3>Next steps in the workshop</h3>
+    <p>Budget limits and late project changes from the NASA HUNCH team made it difficult to gather every resource for our original design. We focused first on getting the main action working: extending and retracting the actuator using pneumatics alone.</p>
+    <p>Our next step is to replace the temporary wooden actuator rod with a more suitable, durable option. The main goal is to attach a base frame so we can mount the hacksaw frame and blade. We also want to improve the way the parts are assembled and finished so the prototype is cleaner and easier to work with.</p>
+  </article>
 </div>
-<div class="card">
-<div class="panel" id="p0"><ul class="m"><li>What we built: add here</li><li>What we will continue to innovate: add here</li></ul><div class="slots"><figure class="slot has-img"><img src="images/prototype-model.jpg" alt="Prototype 1 on the workbench" loading="lazy"><figcaption>Prototype 1</figcaption></figure></div></div>
-<div class="panel" id="p1" hidden><ul class="m"><li>What we changed: add here</li><li>What improved: add here</li></ul><div class="slots"><div class="slot">Photo coming soon<br>photo</div></div></div>
-<div class="panel" id="p2" hidden><ul class="m"><li>What we changed: add here</li><li>What improved: add here</li></ul><div class="slots"><div class="slot">Photo coming soon<br>photo</div></div></div>
+
+<div style="margin-top:28px">
+  <h3 style="font-size:24px;margin-bottom:8px">Prototype versions</h3>
+  <p class="sub" style="margin-top:0">We will document each version as the build develops. Version 1 shows our current prototype; Versions 2 and 3 are ready for future updates.</p>
+  <div class="version-grid">
+    <article class="card version-card">
+      <div class="eyebrow" style="color:var(--mars);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Version 1</div>
+      <div class="version-image"><img src="images/prototype-model.jpg" alt="Team Air-osmith's first pneumatic actuator prototype" loading="lazy"></div>
+      <h3>Initial prototype</h3>
+      <p style="margin:0;color:var(--mute);font-size:15px">Our current prototype, focused on demonstrating pneumatic extension and retraction.</p>
+    </article>
+    <article class="card version-card">
+      <div class="eyebrow" style="color:var(--mars);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Version 2</div>
+      <div class="version-placeholder">Future prototype image</div>
+      <h3>Coming later</h3>
+      <p style="margin:0;color:var(--mute);font-size:15px">Updates and improvements will be added when Version 2 is ready.</p>
+    </article>
+    <article class="card version-card">
+      <div class="eyebrow" style="color:var(--mars);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Version 3</div>
+      <div class="version-placeholder">Future prototype image</div>
+      <h3>Coming later</h3>
+      <p style="margin:0;color:var(--mute);font-size:15px">This section is reserved for the next stage of the build.</p>
+    </article>
+  </div>
 </div>
 </section>
 
@@ -283,4 +351,3 @@ tabs.forEach(function(b){b.onclick=function(){tabs.forEach(function(o){o.setAttr
 </script>
 </body>
 </html>
-```
