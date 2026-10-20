@@ -10,7 +10,7 @@
 
 /*MAIN CSS/ STYLING */
 
-:root{--bg:#090c1b;--panel:#121730;--line:#2a3158;--text:#e9ecf7;--mute:#9aa4c7;--mars:#e8643c;--blue:#4b8bf0;--al:#b9c3d9;color-scheme:dark;
+:root{--bg:#050917;--panel:#0b1226;--line:#1f294d;--text:#e9ecf7;--mute:#9aa4c7;--mars:#e8643c;--blue:#4b8bf0;--al:#b9c3d9;color-scheme:dark;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
 *{box-sizing:border-box}
@@ -23,9 +23,9 @@ h1,h2,h3,.hd{font-family:'Chakra Petch',system-ui,sans-serif;margin:0}
 /* THE NIGHT SKY */
 
 canvas#sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
-canvas#shoot{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+canvas#shoot{position:fixed;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
 canvas#space{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px 16px;background:rgba(9,12,27,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px 16px;background:rgba(5,9,23,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 
 /* AIR-OSMITH LOGO */
 
@@ -53,7 +53,7 @@ ul.m{padding-left:20px;margin:0}ul.m li{margin:8px 0}
 
 .team .card{text-align:center;transition:transform .2s,border-color .2s}
 .team .card:hover{transform:translateY(-4px);border-color:var(--mars)}
-.av{width:104px;height:104px;border-radius:50%;margin:0 auto 12px;background:#1b2147;border:2px dashed var(--line);display:grid;place-items:center;overflow:hidden;font:700 28px 'Chakra Petch',sans-serif;color:var(--al)}
+.av{width:104px;height:104px;border-radius:50%;margin:0 auto 12px;background:#111838;border:2px dashed var(--line);display:grid;place-items:center;overflow:hidden;font:700 28px 'Chakra Petch',sans-serif;color:var(--al)}
 .av.has-img{border:2px solid var(--mars)}
 .av img,.slot img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none;user-select:none}
 .av.has-img img{object-position:center 22%}
@@ -67,23 +67,23 @@ ul.m{padding-left:20px;margin:0}ul.m li{margin:8px 0}
 
 .slots{margin-bottom:8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
 .slot{aspect-ratio:4/3;border:2px dashed var(--line);border-radius:12px;display:grid;place-items:center;text-align:center;color:var(--mute);overflow:hidden;padding:8px;font-size:15px}
-.slot.has-img{border:1px solid var(--line);padding:0;background:#0d1124}
+.slot.has-img{border:1px solid var(--line);padding:0;background:#070c1c}
 .slot.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 figure.slot{margin:0;position:relative}
-figcaption{position:absolute;left:0;right:0;bottom:0;padding:6px 10px;font-size:13px;color:var(--text);background:rgba(9,12,27,.78)}
+figcaption{position:absolute;left:0;right:0;bottom:0;padding:6px 10px;font-size:13px;color:var(--text);background:rgba(5,9,23,.8)}
 
 /* YOUTUBE CARDS */
 
 .vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .vid{display:block;text-decoration:none;color:inherit;transition:border-color .2s}
 .vid:hover,.vid:focus-visible{border-color:var(--blue);outline:none}
-.thumb{position:relative;display:block;aspect-ratio:16/9;margin:-20px -20px 14px;border-radius:14px 14px 0 0;overflow:hidden;background:#0d1124}
+.thumb{position:relative;display:block;aspect-ratio:16/9;margin:-20px -20px 14px;border-radius:14px 14px 0 0;overflow:hidden;background:#070c1c}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .play{width:48px;height:48px;border-radius:50%;background:var(--mars);display:grid;place-items:center;margin-bottom:12px;color:#14070a}
 .thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;width:56px;height:56px;box-shadow:0 2px 12px rgba(0,0,0,.5);transition:transform .2s}
 .vid:hover .thumb .play,.vid:focus-visible .thumb .play{transform:translate(-50%,-50%) scale(1.12)}
 .parts{display:flex;gap:8px;margin-bottom:12px}
-.parts input{flex:1;background:#0d1124;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px 12px;font:inherit}
+.parts input{flex:1;background:#070c1c;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px 12px;font:inherit}
 #plist{list-style:none;padding:0;margin:0}
 #plist li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
 #plist li.done span{text-decoration:line-through;color:var(--mute)}
@@ -99,7 +99,7 @@ a{color:var(--blue)}
 <canvas id="shoot" aria-hidden="true"></canvas>
 <nav aria-label="Sections">
 <a class="logo" href="#top" aria-label="Air-osmith home"><img alt="Air-osmith logo" src="images/logo.png"></a>
-<a href="#top">Home</a><a href="#mission">Problem</a><a href="#team">Team</a><a href="#cad">CAD</a><a href="#inspo">Inspiration</a><a href="#proto">Prototype</a><a href="#progress">Progress</a><a href="#results">Testing</a>
+<a href="#top">Home</a><a href="#mission">Problem</a><a href="#team">Team</a><a href="#cad">CAD</a><a href="#proto">Prototype</a><a href="#progress">Progress</a><a href="#results">Testing</a><a href="#inspo">Creations</a>
 </nav>
 
 <header id="top">
@@ -135,15 +135,6 @@ a{color:var(--blue)}
 <div class="slots"><div class="slot">Photo coming soon<br>CAD, full tool</div><div class="slot">Photo coming soon<br>CAD, actuator</div><div class="slot">Photo coming soon<br>CAD, saw frame</div></div>
 </section>
 
-<section id="inspo">
-<h2>Products that inspired us</h2>
-<div class="vids">
-<a class="card vid" href="https://www.youtube.com/watch?v=NwrLrIPK99A" target="_blank" rel="noopener" aria-label="Watch Actuator + saw frame on YouTube"><div class="thumb"><img src="https://img.youtube.com/vi/NwrLrIPK99A/hqdefault.jpg" alt="YouTube thumbnail: actuator and saw frame" loading="lazy"><div class="play">&#9654;</div></div><h3>Actuator + saw frame</h3><ul class="m"><li>Frame moves back and forth</li><li>Actuator forces saw through aluminum</li></ul></a>
-<a class="card vid" href="https://www.youtube.com/watch?v=CQ-_9Unah88" target="_blank" rel="noopener" aria-label="Watch 3D printed actuator on YouTube"><div class="thumb"><img src="https://img.youtube.com/vi/CQ-_9Unah88/hqdefault.jpg" alt="YouTube thumbnail: 3D printed actuator" loading="lazy"><div class="play">&#9654;</div></div><h3>3D printed actuator</h3><ul class="m"><li>Showed our designer how the tool could work</li></ul></a>
-</div>
-<div class="slots"><div class="slot">Photo coming soon<br>commercial product photo</div><div class="slot">Photo coming soon<br>commercial product photo</div></div>
-</section>
-
 <section id="proto">
 <h2>Our prototype</h2>
 <div class="slots">
@@ -166,7 +157,7 @@ a{color:var(--blue)}
 <button role="tab" aria-selected="false" data-p="p2">Prototype 3</button>
 </div>
 <div class="card">
-<div class="panel" id="p0"><ul class="m"><li>What we built: add here</li><li>What went wrong: add here</li></ul><div class="slots"><figure class="slot has-img"><img src="images/prototype-model.jpg" alt="Prototype 1 on the workbench" loading="lazy"><figcaption>Prototype 1</figcaption></figure></div></div>
+<div class="panel" id="p0"><ul class="m"><li>What we built: add here</li><li>What we will continue to innovate: add here</li></ul><div class="slots"><figure class="slot has-img"><img src="images/prototype-model.jpg" alt="Prototype 1 on the workbench" loading="lazy"><figcaption>Prototype 1</figcaption></figure></div></div>
 <div class="panel" id="p1" hidden><ul class="m"><li>What we changed: add here</li><li>What improved: add here</li></ul><div class="slots"><div class="slot">Photo coming soon<br>photo</div></div></div>
 <div class="panel" id="p2" hidden><ul class="m"><li>What we changed: add here</li><li>What improved: add here</li></ul><div class="slots"><div class="slot">Photo coming soon<br>photo</div></div></div>
 </div>
@@ -176,6 +167,15 @@ a{color:var(--blue)}
 <h2>Testing results</h2>
 <div class="card"><ul class="m"><li>Result: add here</li><li>Result: add here</li></ul></div>
 <div class="slots"><div class="slot">Photo coming soon<br>test photo or video</div><div class="slot">Photo coming soon<br>test photo or video</div></div>
+</section>
+
+<section id="inspo">
+<h2>Creations that inspired our innovation</h2>
+<div class="vids">
+<a class="card vid" href="https://www.youtube.com/watch?v=NwrLrIPK99A" target="_blank" rel="noopener" aria-label="Watch Actuator + saw frame on YouTube"><div class="thumb"><img src="https://img.youtube.com/vi/NwrLrIPK99A/hqdefault.jpg" alt="YouTube thumbnail: actuator and saw frame" loading="lazy"><div class="play">&#9654;</div></div><h3>Actuator + saw frame</h3><ul class="m"><li>Frame moves back and forth</li><li>Actuator forces saw through aluminum</li></ul></a>
+<a class="card vid" href="https://www.youtube.com/watch?v=CQ-_9Unah88" target="_blank" rel="noopener" aria-label="Watch 3D printed actuator on YouTube"><div class="thumb"><img src="https://img.youtube.com/vi/CQ-_9Unah88/hqdefault.jpg" alt="YouTube thumbnail: 3D printed actuator" loading="lazy"><div class="play">&#9654;</div></div><h3>3D printed actuator</h3><ul class="m"><li>Showed our designer how the tool could work</li></ul></a>
+</div>
+<div class="slots"><div class="slot">Photo coming soon<br>commercial product photo</div><div class="slot">Photo coming soon<br>commercial product photo</div></div>
 </section>
 
 <footer>Team Air-osmith &middot; Harlingen Collegiate High &middot; NASA HUNCH<br> Have a Spacetastic Day </footer>
@@ -191,9 +191,9 @@ addEventListener('resize',function(){init();draw()});init();draw()})();
 // shooting stars: separate canvas, straight diagonal from top right to bottom left
 (function(){
 if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-var c=document.getElementById('shoot'),x=c.getContext('2d'),W,H,list=[],nxt=performance.now()+1500;
+var c=document.getElementById('shoot'),x=c.getContext('2d'),W,H,list=[],nxt=performance.now()+800;
 function size(){W=c.width=innerWidth;H=c.height=innerHeight}
-function gap(){return 4000+Math.random()*4000} // 4-8s between stars
+function gap(){return 3000+Math.random()*3500} // 3-6.5s between stars
 function spawn(){
 var a=Math.PI*(.18+Math.random()*.14), // angle below horizontal, about 32-58 degrees
 sp=7+Math.random()*3;
@@ -245,7 +245,7 @@ G(.7,.66,.045,-.2,.4,.00005,'rgba(150,100,220,','#d3b8ff',2)]}
 
 function draw(t){
 x.clearRect(0,0,W,H);
-gal.forEach(function(g){x.save();x.globalAlpha=.7;x.translate(g.x,g.y);x.rotate(g.tilt);x.scale(1,g.sq);x.rotate(t*g.sp);x.drawImage(g.img,-g.r,-g.r);x.restore()});
+gal.forEach(function(g){x.save();x.globalAlpha=.55;x.translate(g.x,g.y);x.rotate(g.tilt);x.scale(1,g.sq);x.rotate(t*g.sp);x.drawImage(g.img,-g.r,-g.r);x.restore()});
 if(!rm)requestAnimationFrame(draw)}
 
 addEventListener('resize',function(){init();if(rm)draw(0)});
