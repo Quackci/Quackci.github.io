@@ -84,7 +84,6 @@ ul.m{padding-left:20px;margin:0}ul.m li{margin:8px 0}
 @media(max-width:650px){.progress-grid{grid-template-columns:1fr}.progress-card.workshop{grid-column:auto}.progress-card .specs{grid-template-columns:1fr}.version-grid{grid-template-columns:1fr}}
 .spec{padding:12px;border:1px solid var(--line);border-radius:10px;background:#070c1c}
 .spec strong{display:block;color:var(--blue);font-size:14px;margin-bottom:3px}
-@media(max-width:650px){.progress-grid{grid-template-columns:1fr}.progress-card.workshop{grid-column:auto}.progress-card .specs{grid-template-columns:1fr}}
 
 /* PHOTO SLOTS (locked, no click-to-change) */
 
@@ -94,6 +93,30 @@ ul.m{padding-left:20px;margin:0}ul.m li{margin:8px 0}
 .slot.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 figure.slot{margin:0;position:relative}
 figcaption{position:absolute;left:0;right:0;bottom:0;padding:6px 10px;font-size:13px;color:var(--text);background:rgba(5,9,23,.8)}
+
+/* CLICK TO ENLARGE (every photo except the team headshots) */
+
+.zoomable{cursor:zoom-in;transition:border-color .2s}
+.zoomable:hover,.zoomable:focus-visible{border-color:var(--blue);outline:none}
+.lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:rgba(2,5,14,.9)}
+.lb[hidden]{display:none}
+.lb figure{margin:0;max-width:min(94vw,1100px);display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb img{display:block;max-width:100%;max-height:78vh;object-fit:contain;border-radius:10px;background:#070c1c}
+.lb figcaption{position:static;background:none;padding:0;text-align:center;font-size:15px;color:var(--text)}
+.lb-close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:26px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.lb-close:hover,.lb-close:focus-visible{border-color:var(--mars);outline:none}
+
+/* VIDEOS (click to play, full screen from the player controls) */
+
+.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+@media(max-width:800px){.video-grid{grid-template-columns:1fr}}
+.video-card h3{font-size:21px;margin-bottom:12px}
+.video-card p{margin:12px 0 0;color:var(--mute);font-size:15px}
+.video-wrap{position:relative;border-radius:10px;overflow:hidden;background:#000}
+.video-wrap video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:0;background:var(--mars);color:#14070a;font-size:28px;cursor:pointer;display:grid;place-items:center;padding:0 0 0 4px;box-shadow:0 2px 16px rgba(0,0,0,.55);transition:transform .2s}
+.bigplay:hover,.bigplay:focus-visible{transform:translate(-50%,-50%) scale(1.1);outline:none}
+.bigplay[hidden]{display:none}
 
 /* YOUTUBE CARDS */
 
@@ -121,7 +144,7 @@ a{color:var(--blue)}
 <canvas id="sky" aria-hidden="true"></canvas>
 <nav aria-label="Sections">
 <a class="logo" href="#top" aria-label="Air-osmith home"><img alt="Air-osmith logo" src="images/logo.png"></a>
-<a href="#top">Home</a><a href="#mission">Problem</a><a href="#team">Team</a><a href="#sketches">Sketches</a><a href="#cad">CAD</a><a href="#proto">Prototype</a><a href="#progress">Progress</a><a href="#results">Testing</a><a href="#inspo">Creations</a>
+<a href="#top">Home</a><a href="#mission">Problem</a><a href="#team">Team</a><a href="#sketches">Sketches</a><a href="#cad">CAD</a><a href="#proto">Prototype</a><a href="#progress">Progress</a><a href="#videos">Videos</a><a href="#inspo">Creations</a>
 </nav>
 
 <header id="top">
@@ -161,12 +184,12 @@ a{color:var(--blue)}
 <h2>Design sketches</h2>
 <p class="sub">These early sketches show how we explored the tool's layout and how its parts could work together before moving into CAD.</p>
 <div class="slots">
-<figure class="slot has-img"><img src="images/sketch-1.jpg" alt="Sketch 1 : Our first sketch depicts our team’s preliminary brainstorming (Aug. 8, 2026). Here, we considered the use of an actuator, pistons to aid our hacksaw’s movement, <br> and the materials needed to accommodate the use of a 12 oz C02 tank. " loading="lazy"><figcaption>Sketch 1</figcaption></figure>
+<figure class="slot has-img"><img src="images/sketch-1.jpg" alt="Sketch 1: preliminary brainstorming sketch showing an actuator, pistons to move the hacksaw, and a 12 oz CO2 tank" loading="lazy"><figcaption>Sketch 1</figcaption></figure>
 <figure class="slot has-img"><img src="images/sketch-2.jpg" alt="Sketch 2 showing layout sketches and possible arrangements for the tool components" loading="lazy"><figcaption>Sketch 2</figcaption></figure>
 </div>
 <div class="card" style="margin-top:16px">
 <h3>What the sketches show</h3>
-<p style="margin:10px 0 0">Sketch 1 : Our first sketch depicts our team’s preliminary brainstorming (Aug. 8, 2026). Here, we considered the use of an actuator, pistons to aid our hacksaw’s movement, and the materials needed to accommodate the use of a 12 oz C02 tank. Our second sketch depicts our team’s key design for our pneumatic tool. This design clearly depicts our solenoid as it would move our compressed air in and out of the actuator (top left). The actuator itself is connected to our hacksaw frame (bottom). This sketch, although dated by the use of a CO2 tank, has remained a vital blueprint for our material arrangement.</p>
+<p style="margin:10px 0 0">Sketch 1 : Our first sketch depicts our team’s preliminary brainstorming (Aug. 8, 2026). Here, we considered the use of an actuator, pistons to aid our hacksaw’s movement, and the materials needed to accommodate the use of a 12 oz CO2 tank. Our second sketch depicts our team’s key design for our pneumatic tool. This design clearly depicts our solenoid as it would move our compressed air in and out of the actuator (top left). The actuator itself is connected to our hacksaw frame (bottom). This sketch, although dated by the use of a CO2 tank, has remained a vital blueprint for our material arrangement.</p>
 </div>
 </section>
 
@@ -176,12 +199,12 @@ a{color:var(--blue)}
 <div class="slots">
 <figure class="slot has-img"><img src="images/end-cap1.jpg" alt="CAD rendering of End Cap 1 for the tubing" loading="lazy"><figcaption>End Cap 1</figcaption></figure>
 <figure class="slot has-img"><img src="images/endcap2.jpg" alt="CAD rendering of End Cap 2 for the tubing" loading="lazy"><figcaption>End Cap 2</figcaption></figure>
-<figure class="slot has-img"><img src="images/o-ring.jpg" alt="CAD rendering of the O-ring component" loading="lazy"><figcaption>Acuator Stop Collar CAD</figcaption></figure>
+<figure class="slot has-img"><img src="images/o-ring.jpg" alt="CAD rendering of the actuator stop collar" loading="lazy"><figcaption>Actuator Stop Collar CAD</figcaption></figure>
 </div>
 <div class="card" style="margin-top:16px"><h3>CAD part descriptions</h3><ul class="m">
 <li><strong>End Cap 1:</strong> The first end cap design for the tubing assembly, this will keep it air sealed.</li>
 <li><strong>End Cap 2:</strong> The second end cap design for the tubing assembly.</li>
-<li><strong>Acuator Stop Collar:</strong> A ring-shaped component modeled separately for the assembly. Its final fit and sealing function should be confirmed during testing.</li>
+<li><strong>Actuator Stop Collar:</strong> A ring-shaped component modeled separately for the assembly. Its final fit and sealing function should be confirmed during testing.</li>
 </ul></div>
 </section>
 
@@ -265,10 +288,26 @@ a{color:var(--blue)}
 </div>
 </section>
 
-<section id="results">
-<h2>Testing results</h2>
-<div class="card"><ul class="m"><li>Result: add here</li><li>Result: add here</li></ul></div>
-<div class="slots"><div class="slot">Photo coming soon<br>test photo or video</div><div class="slot">Photo coming soon<br>test photo or video</div></div>
+<section id="videos">
+<h2>Trifold presentation &amp; prototype overview</h2>
+<div class="video-grid">
+  <article class="card video-card">
+    <h3>Trifold presentation</h3>
+    <div class="video-wrap">
+      <video controls playsinline preload="metadata" poster="images/poster-trifold.jpg"><source src="videos/trifold.mp4" type="video/mp4">Your browser can't play this video.</video>
+      <button class="bigplay" type="button" aria-label="Play the trifold presentation video">&#9654;</button>
+    </div>
+    <p>Team Air-osmith presents our trifold board.</p>
+  </article>
+  <article class="card video-card">
+    <h3>Prototype overview</h3>
+    <div class="video-wrap">
+      <video controls playsinline preload="metadata" poster="images/poster-prototype.jpg"><source src="videos/prototype-overview.mp4" type="video/mp4">Your browser can't play this video.</video>
+      <button class="bigplay" type="button" aria-label="Play the prototype overview video">&#9654;</button>
+    </div>
+    <p>A closer look at our working prototype.</p>
+  </article>
+</div>
 </section>
 
 <section id="inspo">
@@ -342,6 +381,46 @@ if(!rm)requestAnimationFrame(draw)}
 
 addEventListener('resize',function(){init();if(rm)draw(0)});
 init();requestAnimationFrame(draw)
+})();
+
+// click any photo (except team headshots) to see it bigger; X, Esc, or a click outside closes it
+(function(){
+var lb=document.createElement('div');lb.className='lb';lb.hidden=true;
+lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','Enlarged photo');
+lb.innerHTML='<button class="lb-close" type="button" aria-label="Close enlarged photo">&times;</button><figure><img alt=""><figcaption></figcaption></figure>';
+document.body.appendChild(lb);
+var big=lb.querySelector('img'),cap=lb.querySelector('figcaption'),closeBtn=lb.querySelector('.lb-close'),last=null;
+function open(box){
+var img=box.querySelector('img'),fc=box.querySelector('figcaption');
+big.src=img.currentSrc||img.src;big.alt=img.alt||'';
+cap.textContent=fc?fc.textContent:(img.alt||'');cap.hidden=!cap.textContent;
+last=box;lb.hidden=false;document.body.style.overflow='hidden';closeBtn.focus()}
+function close(){
+lb.hidden=true;big.removeAttribute('src');document.body.style.overflow='';
+if(last)last.focus()}
+document.querySelectorAll('figure.slot.has-img,.version-image').forEach(function(box){
+var fc=box.querySelector('figcaption'),img=box.querySelector('img');
+box.classList.add('zoomable');box.tabIndex=0;box.setAttribute('role','button');
+box.setAttribute('aria-label','Enlarge photo: '+(fc?fc.textContent:(img?img.alt:'')));
+box.addEventListener('click',function(){open(box)});
+box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(box)}})});
+closeBtn.addEventListener('click',close);
+lb.addEventListener('click',function(e){if(e.target===lb||e.target.tagName==='FIGURE')close()});
+addEventListener('keydown',function(e){
+if(lb.hidden)return;
+if(e.key==='Escape')close();
+if(e.key==='Tab'){e.preventDefault();closeBtn.focus()}})
+})();
+
+// videos: big play button on the cover, one video plays at a time
+(function(){
+var wraps=document.querySelectorAll('.video-wrap');
+wraps.forEach(function(w){
+var v=w.querySelector('video'),b=w.querySelector('.bigplay');
+b.addEventListener('click',function(){v.play()});
+v.addEventListener('play',function(){b.hidden=true;
+wraps.forEach(function(o){var ov=o.querySelector('video');if(ov!==v)ov.pause()})});
+v.addEventListener('ended',function(){b.hidden=false})})
 })();
 
 // tabs
